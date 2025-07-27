@@ -1,0 +1,28 @@
+* {
+    /* background-color: #24252A; */
+    margin    : 0;
+    padding   : 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Work Sans", sans-serif;
+    font-size  : 16px;
+}
+
+
+#content {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  min-height: 400px;
+}
+
+#content.fade-out {
+  opacity: 0;
+}
+
+nav a {
+  margin: 10px;
+  text-decoration: none;
+  color: blue;
+}

@@ -1,0 +1,10 @@
+#news {
+    display: block;
+    width  : 80%;
+    margin : 20px auto;
+}
+
+#news h1 {
+    margin-bottom: 20px;
+}
+

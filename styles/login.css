@@ -1,0 +1,41 @@
+form {
+    width: 80%;
+    margin: auto;
+}
+
+fieldset {
+    display: grid;
+    width: 30%;
+    margin: 20px auto;
+    border: none;
+}
+
+fieldset legend {
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+input { 
+    height: 30px;
+    padding: 8px 10px;
+}
+
+fieldset button {
+    height: 30px;
+    border: black 2px solid;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+fieldset button:hover {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+a{
+    justify-self: center;
+}
+a:hover{
+    color: blue;
+}

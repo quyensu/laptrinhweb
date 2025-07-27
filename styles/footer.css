@@ -1,0 +1,72 @@
+/* FOOTER  */
+.footer {
+    width          : 100%;
+    height         : auto;
+    background     : black;
+    display        : flex;
+    justify-content: space-between;
+    padding        : 20px 8% 100px 8%;
+}
+
+.footer .logo {
+    cursor          : pointer;
+    height          : 30px;
+    background-color: black;
+}
+
+footer li,
+footer input,
+footer a {
+    color          : aliceblue;
+    text-decoration: none;
+}
+
+.footer img,
+.footer li,
+.footer div {
+    margin-bottom: 1rem;
+    background   : black;
+    list-style   : none;
+}
+
+.footer .footer__title {
+    width : 20%;
+    height: 200px;
+    margin: 20px;
+}
+
+.footer div a,
+.footer div ul,
+.footer div li {
+    display: block;
+    width  : fit-content;
+}
+
+
+.footer .footer__title h3 {
+    color        : white;
+    margin-bottom: 1rem;
+}
+
+
+.footer .footer__title a:hover {
+    color: red;
+}
+
+.footer .footer__title i:hover {
+    color: red;
+}
+
+.footer a::after {
+    content   : '';
+    width     : 0;
+    height    : 2px;
+    background: red;
+    display   : block;
+    transition: all 0.5s;
+}
+
+.footer a:hover::after {
+    width: 100%;
+    color: red;
+}
