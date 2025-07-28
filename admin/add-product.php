@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="../styles/add-product.css">
+
 <?php
 include '../connect.php';
 
@@ -20,16 +22,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <form method="post" enctype="multipart/form-data">
-    ID: <input name="id"><br>
-    Tên: <input name="name"><br>
-    Loại:
+    <label>ID: </label>
+    <input name="id"><br>
+    <label>Tên: </label>
+    <input name="name"><br>
+    <label>Loại: </label>
     <select name="type">
         <option value="áo">Áo</option>
         <option value="quần">Quần</option>
         <option value="phụ kiện">Phụ kiện</option>
     </select><br>
-    Giá: <input name="price" type="number"><br>
-    Mô tả: <textarea name="description"></textarea><br>
-    Ảnh: <input type="file" name="image"><br>
+    <label>Giá: </label>
+    <input name="price" type="number"><br>
+    <label>Mô tả: </label>
+    <textarea name="description"></textarea><br>
+    <label>Ảnh: </label>
+    <input type="file" name="image"><br>
     <button type="submit">Thêm</button>
 </form>

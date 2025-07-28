@@ -12,7 +12,7 @@ $products = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="header">
-    <img class="logo" src="../assets/Coca-Cola_logo.svg.png" alt="logo" data-page="home">
+    <img class="logo" src="../assets/Coca-Cola_logo.svg.png" alt="logo">
     <h1>QUẢN LÍ SẢN PHẨM</h1>
     <a class="user-icon" href="#"><i class="fa-solid fa-user"></i></a>
 </div>

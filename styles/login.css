@@ -33,9 +33,9 @@ fieldset button:hover {
     color: white;
 }
 
-a{
+fieldset a{
     justify-self: center;
 }
-a:hover{
+fieldset a:hover{
     color: blue;
 }

@@ -69,7 +69,7 @@
             Tìm kiếm <i class="fa-solid fa-magnifying-glass"></i>
         </a>
 
-        <a class="cart-icon" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+        <a class="cart-icon" href="#" data-page="cart"><i class="fa-solid fa-cart-shopping"></i></a>
 
         <a class="user-icon" href="#" data-page="login"><i class="fa-solid fa-user"></i></a>
     </div>
