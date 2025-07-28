@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="../styles/add-product.css">
+
 <?php
 include '../connect.php';
 
@@ -15,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($_FILES['image']['name']) {
         $image = $_FILES['image']['name'];
-        move_uploaded_file($_FILES['image']['tmp_name'], "../assets/products/" . $image);
     } else {
         $image = $product['image'];
     }
@@ -41,6 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <textarea name="description" id="description"><?php echo $product['description']; ?></textarea><br>
     <label for="image">Ảnh: </label>
     <input type="file" id="image" name="image"><br>
-    <img src="../assets/products/<?php echo $product['image']; ?>" width="100"><br>
+    <img src="../assets/products/<?php echo $product['image']; ?>"><br>
     <button type="submit">Cập nhật</button>
 </form>

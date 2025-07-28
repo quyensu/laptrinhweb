@@ -61,7 +61,7 @@
         <li><a href="#" class="nav-link" data-page="news">TIN TỨC</a></li>
         <li><a href="#" class="nav-link" data-page="about">GIỚI THIỆU</a></li>
         <li><a href="#" class="nav-link" data-page="contact">LIÊN HỆ</a></li>
-        <li><a href="#" class="nav-link" data-page="">HỔ TRỢ</a></li>
+        <li><a href="#" class="nav-link" data-page="">HỖ TRỢ</a></li>
     </ul>
 
     <div class="header_right">

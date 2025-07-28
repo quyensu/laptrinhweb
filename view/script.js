@@ -18,12 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (data.success) {
                             alert(data.message);
                         } else {
-                            alert(data.message || '❌ Lỗi không xác định');
+                            alert(data.message || 'Lỗi không xác định');
                         }
                     })
                     .catch(err => {
                         console.error('Lỗi:', err);
-                        alert('❌ Có lỗi khi gửi yêu cầu!');
+                        alert('Có lỗi khi gửi yêu cầu!');
                     });
             });
         }
@@ -63,12 +63,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                 document.getElementById('cart').appendChild(emptyText);
                             }
                         } else {
-                            alert('❌ ' + data.message);
+                            alert(data.message);
                         }
                     })
                     .catch(err => {
                         console.error(err);
-                        alert('❌ Lỗi xoá sản phẩm');
+                        alert('Lỗi xoá sản phẩm');
                     });
             });
         });
@@ -95,65 +95,65 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Load các trang như home, product, cart,...
+    // Tải nội dung page
     function loadPage(page, updateHistory = true) {
         const url = `./pages/${page}.php`;
 
         fetch(url)
             .then(response => {
-                if (!response.ok) throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
                 return response.text();
             })
             .then(html => {
                 main.innerHTML = html;
 
-                // ✅ Gắn lại sự kiện tuỳ theo trang
-                if (page === 'cart') attachRemoveFromCartHandlers();
-                if (page === 'product-detail') attachAddToCartFormHandler();
+                attachRemoveFromCartHandlers();
+                // Gắn lại sự kiện cho link sau khi nội dung thay đổi
+                attachLinkEvents();
 
+                // Cập nhật lịch sử URL nếu cần
                 if (updateHistory) {
                     history.pushState({ page }, "", `#${page}`);
                 }
             })
             .catch(error => {
                 console.error('Lỗi tải trang:', error);
-                main.innerHTML = `<div style="color:red; padding:20px;">
-                    <h3>Không thể tải trang</h3>
-                    <p>Lỗi: ${error.message}</p>
-                    <a href="#home" data-page="home">Về trang chủ</a>
-                </div>`;
+                main.innerHTML = `
+                    <div style="color:red; padding:20px;">
+                        <h3>Không thể tải trang</h3>
+                        <p>Lỗi: ${error.message}</p>
+                        <a href="#home" data-page="home">Về trang chủ</a>
+                    </div>`;
+                attachLinkEvents(); // Gắn lại sự kiện trong trang lỗi
             });
     }
 
-    // Gắn sự kiện cho các link chuyển trang
-    const links = document.querySelectorAll('a[data-page]');
-    links.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const page = link.dataset.page;
-            if (page) loadPage(page);
+    // Gắn sự kiện click vào các liên kết nội bộ
+    function attachLinkEvents() {
+        const links = document.querySelectorAll('a[data-page]');
+        links.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = link.dataset.page;
+                if (page) {
+                    loadPage(page);
+                }
+            });
         });
-    });
+    }
 
-    // Xử lý nút Back/Forward của trình duyệt
+    // Khi người dùng bấm Back/Forward
     window.addEventListener('popstate', (e) => {
-        const state = e.state;
-        if (state?.page === 'product-detail') {
-            const id = state.id;
-            fetch(`./pages/product-detail.php?id=${id}`)
-                .then(res => res.text())
-                .then(html => {
-                    main.innerHTML = html;
-                    attachAddToCartFormHandler();
-                });
-        } else {
-            const page = state?.page || location.hash.replace('#', '') || 'home';
-            loadPage(page, false);
-        }
+        const page = e.state?.page || location.hash.replace('#', '') || 'home';
+        loadPage(page, false);
     });
 
-    // Load trang lần đầu tiên
+    // Tải trang đầu tiên khi vào website
     const initialPage = location.hash.replace('#', '') || 'home';
     loadPage(initialPage, false);
+
+    // Lưu lại state ban đầu
     history.replaceState({ page: initialPage }, "", location.hash || `#${initialPage}`);
 });

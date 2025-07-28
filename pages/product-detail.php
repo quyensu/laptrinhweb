@@ -23,7 +23,7 @@ $product = $stmt->fetch();
         <p>Giá: <?php echo number_format($product['price'], 0, ',', '.'); ?> VNĐ</p>
         <p>Mô tả: <?php echo htmlspecialchars($product['description']); ?></p>
 
-        <!-- ✅ Thêm ID để JS nhận diện -->
+        <!-- Thêm ID để JS nhận diện -->
         <form id="add-to-cart-form" action="/demo-web/auth/add-to-cart.php" method="POST">
             <input type="hidden" name="id_product" value="<?= $product['id_product'] ?>">
             <label for="quantity">Số lượng: </label>

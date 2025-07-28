@@ -2,27 +2,49 @@
 session_start();
 include '../connect.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    if (isset($_POST['email']) && isset($_POST['password'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Lấy dữ liệu từ form
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
 
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-        $stmt->execute([$email]);
-        $user = $stmt->fetch();
+    if (!empty($email) && !empty($password)) {
+        // Tìm user theo email
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE email = :email LIMIT 1");
+        $stmt->execute([':email' => $email]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // if ($user && password_verify($password, $user['password'])) {
-            $_SESSION['user'] = $user['email'];
+        // Kiểm tra user tồn tại và mật khẩu đúng
+        if ($user && password_verify($password, $user['password'])) {
+            $_SESSION['email'] = $user['email'];
 
-            if (str_contains($user['email'], '@admin')) {
-                header("Location: ../admin/admin-products.php");
+            // kt email
+            if (substr($email, -10) === '@gmail.com') {
+                header("Location: ../index.php#home");
+                exit();
+            } elseif (substr($email, -6) === '@admin') {
+                header("Location: ../admin/admin-products.php"); // trang admin
+                exit();
             } else {
-                header("Location: ../index.php");
+                echo "<script>
+                    alert('Email không hợp lệ. Chỉ cho phép @gmail.com hoặc @admin');
+                    window.location.href = '/demo-web/index.php#login';
+                </script>";
+                exit();
             }
+
+        } else {
+            echo "<script>
+                alert('Sai email hoặc mật khẩu!');
+                window.location.href = '/demo-web/index.php#login';
+            </script>";
             exit();
-        // } else {
-        //     header("Location: /demo-web/login.php?error=1");
-        //     exit();
-        // }
-    } 
+        }
+    } else {
+        echo "<script>
+            alert('Vui lòng nhập đầy đủ thông tin!');
+            window.location.href = '/demo-web/index.php#login';
+        </script>";
+        exit();
+    }
 }
+?>

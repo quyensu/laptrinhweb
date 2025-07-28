@@ -7,7 +7,7 @@
         <input type="password" name="password" id="password" placeholder="Mật khẩu" required> <br>
         <button type="submit">Đăng nhập</button> <br>
         <a href="index.php">Trở về</a> <br>
-        <a href="#" class="nav-link" data-page="products">Đăng ký</a>
+        <a href="#" class="nav-link" data-page="signup">Đăng ký</a>
     </fieldset>
 
 </form>

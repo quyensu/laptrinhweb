@@ -36,25 +36,3 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php endforeach; ?>
 </div>
 </section>
-
-<!-- JavaScript lọc sản phẩm -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const filterSelect = document.getElementById('filter');
-        const productItems = document.querySelectorAll('.product');
-
-        filterSelect.addEventListener('change', function () {
-            const selected = this.value.toLowerCase();
-
-            productItems.forEach(product => {
-                const type = product.dataset.type.toLowerCase();
-
-                if (selected === 'all' || type === selected) {
-                    product.style.display = 'block';
-                } else {
-                    product.style.display = 'none';
-                }
-            });
-        });
-    });
-</script>

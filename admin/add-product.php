@@ -9,13 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $type = $_POST['type'];
     $price = $_POST['price'];
     $description = $_POST['description'];
-
-    // upload ảnh
     $image = $_FILES['image']['name'];
-    move_uploaded_file($_FILES['image']['tmp_name'], "../assets/products/" . $image);
 
     $stmt = $pdo->prepare("INSERT INTO products (id_product, name, type, price, description, image) VALUES (?, ?, ?, ?, ?, ?)");
     $stmt->execute([$id, $name, $type, $price, $description, $image]);
+
     header("Location: admin-products.php");
     exit();
 }

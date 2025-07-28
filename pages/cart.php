@@ -41,9 +41,9 @@ $total = 0;
                 </tr>
             <?php endforeach; ?>
         </table>
-
-        <h3>Tổng cộng: <?php echo number_format($total, 0, ',', '.'); ?> VNĐ</h3>
-        <button id="checkout-btn">Thanh toán</button>
+        <form id="checkout-form" action="./pages/checkout.php" method="POST">
+            <h3>Tổng cộng: <?php echo number_format($total, 0, ',', '.'); ?> VNĐ</h3>
+            <button type="submit" id="checkout-btn">Thanh toán</button>
+        </form>
     <?php endif; ?>
-
 </section>

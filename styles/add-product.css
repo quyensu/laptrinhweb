@@ -58,3 +58,7 @@ form button:hover {
     background-color: #f9f9f9;
     border: 1px solid #ccc;
 } 
+
+form img{ 
+    width: 250px;
+}
